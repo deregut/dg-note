@@ -1,14 +1,10 @@
 [中文](README.md) | Endlish
 
-# XA Note
+# DG Note
 
-XA Note is a **lightweight, fully self-hosted personal note-taking system**, designed for users who prioritize **privacy, security, and full control**. You deploy and manage it entirely on your own infrastructure. It supports Markdown editing, category management, tagging, and full-text search—offering a smooth writing experience and clear knowledge organization.
-
-Author's Blog: [https://www.xiaoa.me](https://www.xiaoa.me)
+DG Note is a **lightweight, fully self-hosted personal note-taking system**, designed for users who prioritize **privacy, security, and full control**. You deploy and manage it entirely on your own infrastructure. It supports Markdown editing, category management, tagging, and full-text search—offering a smooth writing experience and clear knowledge organization.
 
 If you find this project helpful, please give it a `Star` ⭐!
-
-![](screenshot.png)
 
 ## 🌟 Core Features
 
@@ -53,12 +49,12 @@ If you find this project helpful, please give it a `Star` ⭐!
 Please fork this repo—and don’t forget to give it a `Star`! ⭐
 
 #### Step 2: Create a D1 Database
-Manually create a D1 database named: `xa-note-db`
+Manually create a D1 database named: `DG-note-db`
 
 *Or* create via CLI:
 ```bash
 # Create D1 database
-wrangler d1 create xa-note-db
+wrangler d1 create DG-note-db
 ```
 
 #### Step 3: Import Database Schema
@@ -67,7 +63,7 @@ Manually copy and paste the contents of `d1-init.sql` (*6 tables*) into the D1 c
 *Or* import via CLI:
 ```bash
 # Initialize database with schema and default data
-wrangler d1 execute xa-note-db --file=d1-init.sql
+wrangler d1 execute DG-note-db --file=d1-init.sql
 ```
 
 #### Step 4: Create the Project
@@ -80,11 +76,11 @@ wrangler d1 execute xa-note-db --file=d1-init.sql
    - **Root directory**: `/` (repository root)
 
 #### Step 5: Configure Environment Bindings (via Dashboard)
-1. Go to **Cloudflare Dashboard** > **Workers & Pages** > **xa-note**
+1. Go to **Cloudflare Dashboard** > **Workers & Pages** > **DG-note**
 2. Navigate to **Settings** > **Bindings**
 3. Add a **D1 Database** binding:
    - **Variable name**: `DB`
-   - **D1 Database**: `xa-note-db`
+   - **D1 Database**: `DG-note-db`
 4. Go to **Deployments** > **All deployments**, find the latest deployment, and click **Redeploy**  
    *(Note: After binding a D1 database, you must trigger a new deployment for the binding to take effect)*
 
@@ -102,19 +98,19 @@ wrangler d1 execute xa-note-db --file=d1-init.sql
 #### **One-Command Deployment**
 ```bash
 # Pull the image
-docker pull awinds/xa-note:latest
+docker pull awinds/DG-note:latest
 
-mkdir -p /var/xa-note/data
+mkdir -p /var/DG-note/data
 
 # Run container
 docker run -d \
-  --name xa-note \
+  --name DG-note \
   -p 9915:9915 \
-  -v /var/xa-note/data:/app/data \
+  -v /var/DG-note/data:/app/data \
   -e NODE_ENV=production \
   -e PORT=9915 \
   --restart unless-stopped \
-  awinds/xa-note:latest
+  awinds/DG-note:latest
 ```
 
 #### **Docker Compose Deployment**
@@ -123,20 +119,20 @@ docker run -d \
 version: "3.9"
 
 services:
-  xa-note:
-    image: awinds/xa-note:latest
-    container_name: xa-note
+  DG-note:
+    image: awinds/DG-note:latest
+    container_name: DG-note
     ports:
       - "9915:9915"
     volumes:
-      - /var/xa-note/data:/app/data
+      - /var/DG-note/data:/app/data
     environment:
       NODE_ENV: production
       PORT: 9915
     restart: unless-stopped
 ```
 
-#### **Nginx Reverse Proxy Example**
+#### **Nginx Reverse Proxy EDGmple**
 ```nginx
 server {
     listen 443 ssl;
@@ -158,7 +154,7 @@ This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgements
 
-Thanks to all contributors of the open-source ecosystem. XA Note leverages the following excellent open-source projects:
+Thanks to all contributors of the open-source ecosystem. DG Note leverages the following excellent open-source projects:
 
 - React – UI library  
 - TypeScript – Typed JavaScript  
@@ -169,4 +165,4 @@ Thanks to all contributors of the open-source ecosystem. XA Note leverages the f
 
 ---
 
-**XA Note** – A lightweight, self-hosted note-taking system, your personal knowledge management companion 🚀
+**DG Note** – A lightweight, self-hosted note-taking system, your personal knowledge management companion 🚀
